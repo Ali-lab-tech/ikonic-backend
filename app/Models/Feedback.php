@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Feedback extends Model
 {
     use HasFactory;
-    protected $table = 'feedbacks'; 
+    protected $table = 'feedbacks';
     protected $fillable = ['title', 'description', 'category','user_id'];
 
     protected $casts = [
-        'category' => 'string', 
+        'category' => 'string',
         'user_id' => 'integer', //
     ];
 
@@ -24,7 +24,7 @@ class Feedback extends Model
      protected static function boot()
      {
          parent::boot();
- 
+
          static::creating(function ($feedback) {
              // Set the user_id attribute before creating the feedback
              $feedback->user_id = Auth::id();
@@ -36,6 +36,6 @@ class Feedback extends Model
     }
     public function comments()
     {
-        return $this->hasMany(Comment::class)->whereNull('parent_id');
+        return $this->hasMany(Comment::class);
     }
 }

@@ -25,5 +25,7 @@ Route::post('/login', [AuthController::class, 'loginUser'])->name('login');
 Route::middleware('auth:sanctum')->group( function () {
     Route::resource('feedbacks', FeedbackController::class)->only(['index', 'store']);
     Route::resource('comments', CommentController::class)->only(['index', 'store']);
+    Route::post('/logout', [AuthController::class, 'logoutUser']);
+
 });
 
